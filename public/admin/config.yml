@@ -5,9 +5,6 @@ backend:
   base_url: https://oauth.kode.ch
   auth_scope: repo
   site_domain: fallinov.github.io
-  auth:
-    client_id: Ov23lipkoVWWKsx2ggba
-    client_secret: 42bb8e527167dff3362276ce21d68d8456da8a8d
 
 media_folder: "public/uploads"
 public_folder: "/uploads"
