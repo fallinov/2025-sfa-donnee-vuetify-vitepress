@@ -11,23 +11,22 @@ export default defineConfig({
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: [
-      { text: 'Home', link: '/' },
-      { text: 'Examples', link: '/markdown-examples' },
-      { text: 'Etape 1', link: '/docs/1-creation-des-pages' }
+      { text: 'Accueil', link: '/' },
+      { text: 'Exemple de solution', link: 'https://kode.ch/pokedex/' },
     ],
 
     sidebar: [
       {
-        text: 'Examples',
+        text: 'Étapes',
         items: [
-          { text: 'Markdown Examples', link: '/markdown-examples' },
-          { text: 'Runtime API Examples', link: '/api-examples' }
+          { text: 'Création des pages', link: '/docs/1-creation-des-pages' },
+          { text: 'Menu de navigation', link: '/docs/2-menu-de-navigation' }
         ]
       }
     ],
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/vuejs/vitepress' }
+      { icon: 'github', link: 'https://github.com/fallinov/2024-SFA-JS-Vue-Vuetify-Pokedex/tree/main' }
     ]
   }
 })
