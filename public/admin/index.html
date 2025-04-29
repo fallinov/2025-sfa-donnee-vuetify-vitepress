@@ -7,7 +7,40 @@
     <title>Content Manager</title>
 </head>
 <body>
-<!-- Include the script that builds the page and powers Decap CMS -->
+<!-- Inclure le script Decap CMS -->
+<script>
+  window.CMS_MANUAL_INIT = true;
+</script>
 <script src="https://unpkg.com/decap-cms@^3.0.0/dist/decap-cms.js"></script>
+<script>
+  // Initialiser le CMS avec la configuration
+  CMS.init({
+    config: {
+      backend: {
+        name: "github",
+        repo: "fallinov/2025-sfa-donnee-vuetify-vitepress",
+        branch: "main",
+        base_url: "https://oauth.kode.ch",
+        auth_scope: "repo",
+        site_domain: "fallinov.github.io"
+      },
+      media_folder: "public/uploads",
+      public_folder: "/uploads",
+      collections: [
+        {
+          name: "docs",
+          label: "Documentation",
+          folder: "/",
+          create: true,
+          slug: "{{slug}}",
+          fields: [
+            { label: "Titre", name: "title", widget: "string" },
+            { label: "Contenu", name: "body", widget: "markdown" }
+          ]
+        }
+      ]
+    }
+  });
+</script>
 </body>
 </html>
