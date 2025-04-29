@@ -1,39 +1,48 @@
+# Nom du workflow (tel qu'il apparaîtra dans GitHub Actions)
 name: Deploy VitePress site
 
+# Déclenchement automatique du workflow
 on:
   push:
     branches:
-      - main  # ou la branche que vous utilisez
+      - main  # Le workflow se déclenche uniquement lors des pushs sur la branche "main"
 
 jobs:
-  build-and-deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+  build-and-deploy:  # Nom du job principal
+    runs-on: ubuntu-latest  # Environnement utilisé pour exécuter le job (machine Linux)
 
+    steps:
+      # Étape 1 : Cloner le dépôt
+      - name: Checkout repository
+        uses: actions/checkout@v3  # Action officielle pour récupérer le code du dépôt
+
+      # Étape 2 : Installer Node.js
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 18
+          node-version: 18  # Spécifie la version de Node.js à utiliser
 
+      # Étape 3 : Installer les dépendances du projet et VitePress en global
       - name: Install dependencies
         run: |
-          npm ci || npm install
-          npm install -g vitepress
+          npm ci || npm install  # Installation rapide si package-lock.json est présent, sinon fallback
+          npm install -g vitepress  # Installation globale de VitePress (optionnel si déjà dans le projet)
 
+      # Étape 4 : Configurer Git pour que le bot puisse faire un commit
       - name: Configure Git
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
 
+      # Étape 5 : Générer les fichiers statiques avec VitePress
       - name: Build VitePress site
-        run: vitepress build
+        run: vitepress build  # Par défaut, VitePress utilise la config dans .vitepress/
 
+      # Étape 6 : Déployer le contenu généré sur la branche gh-pages
       - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
+        uses: peaceiris/actions-gh-pages@v3  # Action spécialisée pour publier sur GitHub Pages
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: .vitepress/dist
-          publish_branch: gh-pages
-          force_orphan: true
+          github_token: ${{ secrets.GITHUB_TOKEN }}  # Token auto-généré par GitHub pour autoriser le push
+          publish_dir: .vitepress/dist  # Répertoire de sortie généré par VitePress
+          publish_branch: gh-pages  # Branche cible pour la publication GitHub Pages
+          force_orphan: true  # Crée une branche sans historique Git (recommandé pour un site statique)
