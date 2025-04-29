@@ -2,7 +2,7 @@ backend:
   name: github
   repo: fallinov/2025-sfa-donnee-vuetify-vitepress
   branch: main
-  base_url: https://oauth.kode.ch/
+  base_url: https://oauth.kode.ch
   auth_scope: repo
   site_domain: fallinov.github.io
   auth:
