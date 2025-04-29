@@ -2,6 +2,7 @@ import { defineConfig } from 'vitepress'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
+  base: '/2025-sfa-donnee-vuetify-vitepress/',
   title: "Pokédex Vuetify",
   description: "Donnée permettant de créer une première application Vuetify de type Pokédex",
   themeConfig: {
